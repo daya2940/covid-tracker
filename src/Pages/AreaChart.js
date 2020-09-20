@@ -27,21 +27,28 @@ const data = [
   },
 ];
 
-const Chart4 = () => {
+const Chart4 = ({areaData}) => {
+  const data = [];
+  areaData.data2.map(item => data.push(item.total));
+  for (let i = 0; i < data.length; i++) {
+    data[i].name = areaData.data1[i];
+  }
     return (
       <AreaChart
-        width={500}
+        width={1200}
         height={400}
         data={data}
         margin={{
-          top: 10, right: 30, left: 0, bottom: 0,
+          top: 10, right: 20, left: 2, bottom: 0,
         }}
       >
-        <CartesianGrid strokeDasharray="3 3" />
+        <CartesianGrid strokeDasharray="3 2" />
         <XAxis dataKey="name" />
         <YAxis />
         <Tooltip />
-        <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
+        <Area type="monotone" dataKey="deceased" stackId="1" stroke="#8884d8" fill="#8884d8" />
+        <Area type="monotone" dataKey="recovered" stackId="1" stroke="#8884d8" fill="#82ca9d" />
+        <Area type="monotone" dataKey="tested" stackId="1" stroke="#8884d8" fill="#ffc658" />
       </AreaChart>
     );
 }

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import Navbar from './component/Navbar';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import Dashboard from './Pages/Dashboard';
 import Report from './Pages/Report';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ShowData from './component/showData';
@@ -23,6 +22,7 @@ function App() {
           console.log(err);
         }
         else {
+          console.log(res);
           const data1 = Object.entries(res.data).map(item => item[0]);
           const data2 = Object.entries(res.data).map(item => item[1]);
           setValue({ data1: data1, data2 });
@@ -35,7 +35,6 @@ function App() {
       <Router>
         <Navbar />
         <Switch>
-          <Route path="/Dashboard" component={Dashboard} />
           <Route path="/tables" component={Report} />
           <Route path="/stateData" render={props => (
             <ShowData stateData={value} />
