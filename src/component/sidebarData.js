@@ -13,6 +13,12 @@ export const sidebarData = [
     path: '/tables',
     icon:<FaIcons.FaChartLine />,
     cName: 'nav-text'
+  },
+   {
+    title: 'Andhra Pradesh',
+    path: '/stateData',
+    icon:<FaIcons.FaChartLine />,
+    cName: 'nav-text'
   }
 
 ];

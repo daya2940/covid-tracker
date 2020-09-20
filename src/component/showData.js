@@ -1,21 +1,21 @@
-import React from 'react';
-import Chart1 from './LineChart';
-import Chart2 from './BarChart';
-import Chart3 from './PieChart';
-import Chart4 from './AreaChart';
+import  React from 'react'
+import Chart1 from '../Pages/LineChart';
+import Chart2 from '../Pages/BarChart';
+import Chart3 from '../Pages/PieChart';
+import Chart4 from '../Pages/AreaChart';
 
+const ShowData = ({stateData}) => {
+  console.log(stateData);
 
-const Dashboard = () => {
-
-  return (
-    <div>
+    return (
+      <div>
       <div className="container">
         <div className="row">
           <div className="col-sm-12 col-md-12 col-lg-6">
             <Chart1 />
           </div>
           <div className="col-sm-12 col-md-12 col-lg-6">
-            <Chart2 />
+            <Chart2 barData={stateData}/>
           </div>
         </div>
         <div className="row mt-4">
@@ -31,7 +31,7 @@ const Dashboard = () => {
 
       </div>
     </div>
-  );
+    )
 }
 
-export default Dashboard;
+export default ShowData
