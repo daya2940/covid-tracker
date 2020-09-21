@@ -28,13 +28,15 @@ const data = [
 ];
 const StateData = ({ stateData }) => {
   console.log(stateData);
-  // if (stateData) {
-  //   const data = [];
-  //   const data1 = stateData.datax.map(item => item[0]);
-  //   const data2 = stateData.datax.map(item => item[1]);
-  //   console.log(data1);
-  //   console.log(data2);
-  // }
+  const data = [];
+  if (stateData.length > 0) {
+    const data1 = stateData.map(item => item[0]);
+    const data2 = stateData.map(item => item[1].total);
+    data2.map(item => data.push(item.total));
+        // data[0].name = data1[0];
+      console.log(data2);
+      console.log(data2);
+  }
 
   return (
     <div>
@@ -44,13 +46,13 @@ const StateData = ({ stateData }) => {
             <BarChart
               width={500}
               height={300}
-              data={data[0].total}
+              data={data}
               margin={{
                 top: 5, right: 30, left: 20, bottom: 5,
               }}
             >
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
+              <XAxis dataKey="deceased" />
               <YAxis />
               <Tooltip />
               <Legend />
@@ -76,8 +78,10 @@ const StateData = ({ stateData }) => {
               <YAxis />
               <Tooltip />
               <Legend />
-              <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
-              <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+              <Line type="monotone" dataKey="confirmed" stroke="#8884d8" activeDot={{ r: 8 }} />
+              <Line type="monotone" dataKey="deceased" stroke="#82ca9d" />
+              <Line type="monotone" dataKey="recovered" stroke="#82ca9d" />
+              <Line type="monotone" dataKey="tested" stroke="#82ca9d" />
             </LineChart>
           </div>
         </div>
@@ -95,7 +99,9 @@ const StateData = ({ stateData }) => {
               <XAxis dataKey="name" />
               <YAxis />
               <Tooltip />
-              <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
+              <Area type="monotone" dataKey="deceased" stackId="1" stroke="#8884d8" fill="#8884d8" />
+              <Area type="monotone" dataKey="recovered" stackId="1" stroke="#8884d8" fill="#82ca9d" />
+              <Area type="monotone" dataKey="tested" stackId="1" stroke="#8884d8" fill="#ffc658" />
             </AreaChart>
           </div>
         </div>

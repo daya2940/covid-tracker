@@ -15,13 +15,11 @@ function App() {
     data2: [],
   });
   const [navno, setNavNo] = useState(0);
-  const [data,setData] = useState({
-    datax1: [],
-  })
+  const [data,setData] = useState([])
 
   const handler = (index) => {
     setNavNo(index);
-    setData({datax:Object.entries(data2[navno].districts)});
+    setData(Object.entries(data2[navno].districts));
   };
 
   useEffect(() => {

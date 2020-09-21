@@ -1,8 +1,12 @@
-import React from 'react';
-
+import React, { useState } from 'react';
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
 
 const Report = ({ reportData }) => {
   const data = [];
+  const [name, setName] = useState('AN');
+  const [filter,setFilter] = useState([])
+
   const population = [];
   reportData.data2.map(item => data.push(item.total));
   reportData.data2.map(item => population.push(item.meta.population));
@@ -10,19 +14,30 @@ const Report = ({ reportData }) => {
     data[i].name = reportData.data1[i];
     data[i].population = population[i];
   }
-  console.log(reportData.data1);
+
+  const handleChange = e => {
+    setName(e.value);
+    filterDropDown();
+  }
+
+  const defaultOption = reportData.data1[0];
+
+  const filterDropDown = () => {
+    const filteredData = data.filter(stateName => {
+      if (stateName.name === name)
+        return stateName;
+    });
+    setFilter(filteredData);
+  }
+
+
+
+  console.log(filter);
 
   return (
     <div className="container">
-      <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown button
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <button class="dropdown-item" href="#">Action</button>
-          <button class="dropdown-item" href="#">Another action</button>
-          <button class="dropdown-item" href="#">Something else here</button>
-        </div>
+      <div className="mt-3 ml-auto" style={{ width: '30%' }}>
+        Filter<Dropdown options={reportData.data1} onChange={handleChange} value={name} placeholder="Select a state" />;
       </div>
       <table className="table mt-5">
         <thead>
@@ -35,7 +50,7 @@ const Report = ({ reportData }) => {
           </tr>
         </thead>
         <tbody>
-          {
+          { filter.length===0 &&
             data.map((item, index) => {
               return (
                 <tr key={index}>
@@ -47,7 +62,18 @@ const Report = ({ reportData }) => {
                 </tr>)
             })
           }
-
+          {
+            filter.map((item, index) => {
+              return (
+                <tr key={index}>
+                  <th scope="row">{item.name}</th>
+                  <td>{item.population}</td>
+                  <td>{item.confirmed}</td>
+                  <td>{item.deceased}</td>
+                  <td>{item.recovered}</td>
+                </tr>)
+            })
+          }
         </tbody>
       </table>
     </div>
