@@ -10,7 +10,7 @@ const ShowData = ({ stateData }) => {
   for (let i = 0; i < data.length; i++) {
     data[i].name = stateData.data1[i];
   }
-  console.log(data);
+
   return (
     <div>
       <div className="container">

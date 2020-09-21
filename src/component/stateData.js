@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, AreaChart, Area, LineChart, Line
 } from 'recharts';
@@ -11,8 +11,6 @@ const StateData = ({ stateData }) => {
     const data2 = stateData.map(item => item[1].total);
     data2.map(item => data.push(item.total));
         // data[0].name = data1[0];
-      console.log(data2);
-      console.log(data2);
   }
 
   return (
