@@ -5,7 +5,7 @@ import 'react-dropdown/style.css';
 const Report = ({ reportData }) => {
   const data = [];
   const [name, setName] = useState('AN');
-  const [filter,setFilter] = useState([])
+  const [filter, setFilter] = useState([])
 
   const population = [];
   reportData.data2.map(item => data.push(item.total));
@@ -20,12 +20,15 @@ const Report = ({ reportData }) => {
     filterDropDown();
   }
 
-  const defaultOption = reportData.data1[0];
+  // const defaultOption = reportData.data1[0];
 
   const filterDropDown = () => {
     const filteredData = data.filter(stateName => {
-      if (stateName.name === name)
+      if (stateName.name === name) {
         return stateName;
+      }
+
+      return 0;
     });
     setFilter(filteredData);
   }
@@ -50,7 +53,7 @@ const Report = ({ reportData }) => {
           </tr>
         </thead>
         <tbody>
-          { filter.length===0 &&
+          {filter.length === 0 &&
             data.map((item, index) => {
               return (
                 <tr key={index}>
